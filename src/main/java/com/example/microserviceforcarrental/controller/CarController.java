@@ -4,6 +4,7 @@ import com.example.microserviceforcarrental.model.CarEntity;
 import com.example.microserviceforcarrental.repository.CarRepository;
 import com.example.microserviceforcarrental.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,4 +25,17 @@ public class CarController {
     public Optional<CarEntity> carById(@PathVariable Long id){
         return carService.getCarById(id);
     }
+
+    @EventListener
+    public void fillDB() {
+        CarEntity carEntity = new CarEntity(1L, "bmw", "x5");
+        addCar(carEntity);
+    }
+
+
+    public CarEntity addCar(CarEntity carEntity){
+        return carRepository.save(carEntity);
+    }
+
 }
+
