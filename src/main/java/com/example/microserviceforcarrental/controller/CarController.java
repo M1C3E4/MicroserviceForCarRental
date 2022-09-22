@@ -3,7 +3,7 @@ package com.example.microserviceforcarrental.controller;
 import com.example.microserviceforcarrental.model.CarEntity;
 import com.example.microserviceforcarrental.repository.CarRepository;
 import com.example.microserviceforcarrental.service.CarService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +26,7 @@ public class CarController {
         return carService.getCarById(id);
     }
 
-    @EventListener
+    @EventListener(ApplicationReadyEvent.class)
     public void fillDB() {
         CarEntity carEntity = new CarEntity(1L, "bmw", "x5");
         addCar(carEntity);
