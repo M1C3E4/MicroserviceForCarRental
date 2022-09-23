@@ -20,12 +20,12 @@ public class CarController {
     }
 
     @GetMapping("/findById/{id}")
-    public Optional<CarEntity> carById(@PathVariable Long id){
+    public Optional<CarEntity> carById(@PathVariable Long id) {
         return carService.getCarById(id);
     }
 
     @PostMapping("/add")
-    public CarEntity add(@RequestBody CarEntity carEntity){
+    public CarEntity add(@RequestBody CarEntity carEntity) {
         return carService.addCar(carEntity);
     }
 
@@ -36,7 +36,7 @@ public class CarController {
     }
 
 
-    public CarEntity addCar(CarEntity carEntity){
+    public CarEntity addCar(CarEntity carEntity) {
         return carRepository.save(carEntity);
     }
 

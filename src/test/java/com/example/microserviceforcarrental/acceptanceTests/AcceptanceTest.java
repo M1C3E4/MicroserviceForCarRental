@@ -15,7 +15,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -47,11 +46,11 @@ public class AcceptanceTest {
 
     @Test
     @DisplayName("https://localhost:9090/add -> 201")
-    public void shouldReturnAddedObject()throws Exception{
-                mockMvc.perform(MockMvcRequestBuilders.post("/add")
+    public void shouldReturnAddedObject() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/add")
                         .content(asJsonString(new CarEntity(2L, "audi", "a4")))
-                .contentType(MediaType.APPLICATION_JSON))
-                        .andDo(print())
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
     }

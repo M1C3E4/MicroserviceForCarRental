@@ -9,16 +9,14 @@ import java.util.Optional;
 
 @Service
 public class CarService {
-
     @Autowired
     private CarRepository carRepository;
 
-    public Optional<CarEntity> getCarById(Long id){
+    public Optional<CarEntity> getCarById(Long id) {
         return carRepository.findById(id);
     }
 
-    public CarEntity addCar(CarEntity carEntity){
+    public CarEntity addCar(CarEntity carEntity) {
         return carRepository.save(carEntity);
     }
-
 }
