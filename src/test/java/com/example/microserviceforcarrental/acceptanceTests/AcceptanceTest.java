@@ -51,7 +51,8 @@ public class AcceptanceTest {
                 mockMvc.perform(MockMvcRequestBuilders.post("/add")
                         .content(asJsonString(new CarEntity(2L, "audi", "a4")))
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated())
+                        .andDo(print())
+                .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
     }
 
