@@ -17,4 +17,8 @@ public class CarService {
         return carRepository.findById(id);
     }
 
+    public CarEntity addCar(CarEntity carEntity){
+        return carRepository.save(carEntity);
+    }
+
 }

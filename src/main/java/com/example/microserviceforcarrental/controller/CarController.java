@@ -5,9 +5,7 @@ import com.example.microserviceforcarrental.repository.CarRepository;
 import com.example.microserviceforcarrental.service.CarService;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -24,6 +22,11 @@ public class CarController {
     @GetMapping("/findById/{id}")
     public Optional<CarEntity> carById(@PathVariable Long id){
         return carService.getCarById(id);
+    }
+
+    @PostMapping("/add")
+    public CarEntity add(@RequestBody CarEntity carEntity){
+        return carService.addCar(carEntity);
     }
 
     @EventListener(ApplicationReadyEvent.class)
